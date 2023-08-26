@@ -7,7 +7,7 @@ import { utf8 } from "@coral-xyz/anchor/dist/cjs/utils/bytes";
 function authorFilter(authorBase58PublicKey: any) {
   return {
     memcmp: {
-      offset: 8, // Discriminator.
+      offset: 8,
       bytes: authorBase58PublicKey,
     },
   };
