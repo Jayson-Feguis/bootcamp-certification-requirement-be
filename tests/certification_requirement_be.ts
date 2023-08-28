@@ -50,10 +50,11 @@ describe("certification_requirement_be", () => {
   });
 
   it("Juan should add data to leaderboard", async () => {
+    const game = "tile";
     const mode = "4x4";
     const point = 12;
-    const guess = 17;
-    const time = 14;
+    const time = 17;
+    const guess = 14;
 
     const [userProfilePda] = anchor.web3.PublicKey.findProgramAddressSync(
       [utf8.encode("USER_PROFILE"), juan.publicKey.toBuffer()],
@@ -75,7 +76,7 @@ describe("certification_requirement_be", () => {
       );
 
     await program.methods
-      .addLeaderboard(mode, point, guess, time)
+      .addLeaderboard(game, mode, point, time, guess)
       .accounts({
         user: juan.publicKey,
         userProfile: userProfilePda,
@@ -92,9 +93,10 @@ describe("certification_requirement_be", () => {
     leaderboardAccount = leaderboardAccount[0].account;
 
     expect(leaderboardAccount.user.toString()).equal(juan.publicKey.toString());
+    expect(leaderboardAccount.game).equal(game);
     expect(leaderboardAccount.mode).equal(mode);
     expect(leaderboardAccount.point).equal(point);
-    expect(leaderboardAccount.guess).equal(guess);
     expect(leaderboardAccount.time).equal(time);
+    expect(leaderboardAccount.guess).equal(guess);
   });
 });
