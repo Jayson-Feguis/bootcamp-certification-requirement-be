@@ -1,6 +1,6 @@
 use anchor_lang::prelude::*;
 
-declare_id!("CKomVJRHhV6PKvkg2KuDsXnwzTJNXPy3KP42nFvvWwsF");
+declare_id!("76ksujnwvqsPq2V9gfKYgRn1adzw4XifKncbstfSxLCb");
 
 pub mod states;
 pub mod constant;
@@ -22,18 +22,20 @@ mod certification_requirement_be {
 
     pub fn add_leaderboard(
         ctx: Context<AddLeaderboard>,
+        game: String,
         mode: String,
         point: u32,
-        guess: u32,
         time: u32,
+        guess: u32,
     ) -> Result<()> {
         let leaderboard_account = &mut ctx.accounts.leaderboard_account;
         let user_profile = &mut ctx.accounts.user_profile;
         leaderboard_account.user = ctx.accounts.user.key();
+        leaderboard_account.game = game;
         leaderboard_account.mode = mode;
         leaderboard_account.point = point;
-        leaderboard_account.guess = guess;
         leaderboard_account.time = time;
+        leaderboard_account.guess = guess;
         user_profile.games_played = user_profile.games_played.checked_add(1).unwrap();
 
         msg!("Data submitted!");

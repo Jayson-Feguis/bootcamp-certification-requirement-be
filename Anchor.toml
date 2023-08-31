@@ -2,13 +2,18 @@
 seeds = false
 skip-lint = false
 [programs.localnet]
-certification_requirement_be = "CKomVJRHhV6PKvkg2KuDsXnwzTJNXPy3KP42nFvvWwsF"
+certification_requirement_be = "76ksujnwvqsPq2V9gfKYgRn1adzw4XifKncbstfSxLCb"
+
+[programs.devnet]
+certification_requirement_be = "76ksujnwvqsPq2V9gfKYgRn1adzw4XifKncbstfSxLCb"
 
 [registry]
-url = "http://localhost:8899"
+url = "https://api.devnet.solana.com"
+
+# "http://localhost:8899"
 
 [provider]
-cluster = "Localnet"
+cluster = "devnet"
 wallet = "/home/jayson/.config/solana/id.json"
 
 [scripts]
