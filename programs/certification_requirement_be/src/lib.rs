@@ -12,7 +12,6 @@ mod certification_requirement_be {
     use super::*;
 
     pub fn initialize_user(ctx: Context<InitializeUser>) -> Result<()> {
-        // Initialize user profile with default data
         let user_profile = &mut ctx.accounts.user_profile;
         user_profile.user = ctx.accounts.user.key();
         user_profile.games_played = 0;
